@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  name: tomcat-deploy
 spec:
+  replicas: 2
   selector:
     matchLabels:
-      app: webapp
-  replicas: 1
-  template: # template for the pods
+      app: tomcat
+  template:
     metadata:
       labels:
-        app: webapp
+        app: tomcat
     spec:
       containers:
-      - name: webapp
-        image: richardchesterwood/k8s-fleetman-webapp-angular:release2
-        env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: production-microservice
+        - name: tomcat-container
+          image: fatimatabassum/fatima12:IMAGE_TAG
+          ports:
+            - containerPort: 8080
