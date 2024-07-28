@@ -1,35 +1,19 @@
-pipeline{
-	agent any
-		parameter {
-		choice(name: 'DEPLOY_TO', choices: ['DEV', 'QA', 'PROD'])
-		}
-	stages {
-		stage('Checkout') {
-			steps {
-        echo "Checkout completed"
-			}
-		}
-
-		stage('Test') {
-			steps {
-				echo "Running static tests on code"
-			}
-		}
-
-		stage('Build') {
-      			when {
-        			branch "master"
-      			}
-			steps {
-				sh 'echo "Building the code"'
-			}
-		}
-
-		stage('Deploy') {
-			steps {
-				echo "deploying into environment"
-			}
-		}
-
-	}
-}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tomcat
+  template:
+    metadata:
+      labels:
+        app: tomcat
+    spec:
+      containers:
+        - name: tomcat-container
+          image: fatimatabassum/fatima12:IMAGE_TAG
+          ports:
+            - containerPort: 8080
