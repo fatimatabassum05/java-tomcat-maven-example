@@ -1,0 +1,12 @@
+deployment:
+  name: tomcat-deploy-project
+  replicaCount: 1
+image:
+  repository: fatimatabassum/fatima12
+  tag: IMAGE_TAG
+  containerPort: 8080
+service:
+  type: NodePort
+  clusterIPPort: 8080
+  nodePort: 31000
+namespace: prod
