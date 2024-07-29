@@ -25,7 +25,7 @@ pipeline{
         stage('Deploy Stage') {
           agent {label 'k8s_node'}
           steps{
-            sh 'helm install helm helm -n prod'
+            sh 'helm install helm1 helm1 -n prod'
           } 
         }
     }
