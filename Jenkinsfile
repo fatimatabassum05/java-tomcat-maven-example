@@ -25,8 +25,7 @@ pipeline{
         stage('Deploy Stage') {
           agent {label 'k8s_node'}
           steps{
-            sh 'microk8s kubectl apply -f deploy.yml'
-            sh 'microk8s kubectl apply -f service.yml'
+            sh 'helm install helm helm'
           } 
         }
     }
