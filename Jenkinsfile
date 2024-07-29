@@ -25,7 +25,7 @@ pipeline{
         stage('Deploy Stage') {
           agent {label 'k8s_node'}
           steps{
-            sh 'helm install helm helm -n test'
+            sh 'helm install helm helm -f values1.yaml -n test'
           } 
         }
     }
