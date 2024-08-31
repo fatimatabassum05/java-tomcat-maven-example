@@ -1,5 +1,5 @@
 pipeline{
-    agent {label 'docker_node_new'}
+    agent {label 'docker'}
     environment{
         IMAGE_TAG = "${BUILD_NUMBER}"
     }
