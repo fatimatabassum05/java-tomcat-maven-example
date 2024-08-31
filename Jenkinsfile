@@ -5,19 +5,19 @@ pipeline{
     }
     stages{
        stage('Git Checkout Stage'){
-            agent {label 'docker_node_new'}
+            agent {label 'docker'}
             steps{
                 git branch: 'main', url: 'https://github.com/fatimatabassum05/java-example.git'
             }
          }        
         stage('Build docker Image'){
-          agent {label 'docker_node_new'}
+          agent {label 'docker'}
           steps{
             sh 'docker build -t fatimatabassum/fatima12:IMAGE_TAG .'
           }
         }
         stage('Push To Dockerhub'){
-          agent {label 'docker_node_new'}
+          agent {label 'docker'}
           steps{
             sh 'docker push fatimatabassum/fatima12:IMAGE_TAG'
           }
